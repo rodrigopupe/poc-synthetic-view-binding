@@ -2,12 +2,14 @@ package com.example.projviewbindingpoc.view
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.projviewbindingpoc.R
-import kotlinx.android.synthetic.main.activity_result.*
+import com.example.projviewbindingpoc.databinding.ActivityResultBinding
 
 class ResultActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityResultBinding
 
     companion object {
         private const val KEY_RIGHT_ANSWER_COUNT = "RIGHT_ANSWER_COUNT"
@@ -21,13 +23,15 @@ class ResultActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_result)
+        binding = ActivityResultBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         initViews()
     }
 
     private fun initViews() {
         val rightAnswerCount = intent.getIntExtra(KEY_RIGHT_ANSWER_COUNT, 0)
-        tvResultMessage.text = resources.getQuantityString(R.plurals.rightStatementsCount, rightAnswerCount, rightAnswerCount)
+        binding.tvMessage.text =
+            resources.getQuantityString(R.plurals.rightStatementsCount, rightAnswerCount, rightAnswerCount)
     }
 }

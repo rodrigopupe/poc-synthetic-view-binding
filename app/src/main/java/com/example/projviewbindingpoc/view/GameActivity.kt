@@ -1,25 +1,25 @@
 package com.example.projviewbindingpoc.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.projviewbindingpoc.R
 import com.example.projviewbindingpoc.business.usecase.GetAllAvailableQuestionsUseCase
 import com.example.projviewbindingpoc.data.models.Question
 import com.example.projviewbindingpoc.data.repository.QuestionRepositoryImpl
-import kotlinx.android.synthetic.main.activity_game.*
+import com.example.projviewbindingpoc.databinding.ActivityGameBinding
 
 class GameActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityGameBinding
     private lateinit var viewModel: GameViewModel
     private val gameQuestionsAdapter = GameQuestionsAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_game)
+        binding = ActivityGameBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         initViewModel()
         initViews()
@@ -35,10 +35,10 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        rvStatements.layoutManager = LinearLayoutManager(this)
-        rvStatements.adapter = this.gameQuestionsAdapter
+        binding.rvStatements.layoutManager = LinearLayoutManager(this)
+        binding.rvStatements.adapter = this.gameQuestionsAdapter
 
-        btCheckResult.setOnClickListener {
+        binding.btCheckResult.setOnClickListener {
             openResultScreen()
         }
     }
