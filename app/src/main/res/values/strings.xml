@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">ProjViewBindingPOC</string>
+
+    <!-- MainActivity -->
+    <string name="welcome_message">Bem vindo ao Perguntae!</string>
+    <string name="start_game_button">Toque aqui para iniciar</string>
+
+    <!-- GameActivity -->
+    <string name="game_header_message">Responda as questões e veja a sua nota ao final:</string>
+    <string name="check_result_label">Ver resultado</string>
+
+    <!-- ResultActivity -->
+    <plurals name="rightStatementsCount">
+        <item quantity="one">Você acertou %d questão</item>
+        <item quantity="other">Você acertou %d questões</item>
+    </plurals>
 </resources>
