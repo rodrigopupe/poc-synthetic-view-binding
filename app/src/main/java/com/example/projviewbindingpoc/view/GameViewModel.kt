@@ -14,10 +14,6 @@ class GameViewModel(private val getAllAvailableQuestionsUseCase: GetAllAvailable
         questions.value = getAllAvailableQuestionsUseCase.execute()
     }
 
-    fun getRightAnswersCount(): Int {
-        return questions.value!!.count { it.isTheAnswerRight() }
-    }
-
     class Factory(val getAllAvailableQuestionsUseCase: GetAllAvailableQuestionsUseCase) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             return GameViewModel(getAllAvailableQuestionsUseCase) as T

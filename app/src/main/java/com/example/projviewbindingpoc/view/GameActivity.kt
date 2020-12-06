@@ -6,6 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.projviewbindingpoc.business.usecase.GetAllAvailableQuestionsUseCase
+import com.example.projviewbindingpoc.data.models.GameResult
 import com.example.projviewbindingpoc.data.models.Question
 import com.example.projviewbindingpoc.data.repository.QuestionRepositoryImpl
 import com.example.projviewbindingpoc.databinding.ActivityGameBinding
@@ -52,7 +53,10 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun openResultScreen() {
-        ResultActivity.start(this, viewModel.getRightAnswersCount())
+        val gameResult = GameResult(
+            viewModel.questions.value!!
+        )
+        ResultActivity.start(this, gameResult)
         this.finish()
     }
 }
