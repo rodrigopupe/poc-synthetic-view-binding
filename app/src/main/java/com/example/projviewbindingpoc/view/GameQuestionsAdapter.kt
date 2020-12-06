@@ -31,17 +31,14 @@ class GameQuestionsAdapter : RecyclerView.Adapter<GameQuestionsAdapter.GameQuest
         RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bind(item: Question) {
-            itemBinding.tvStatement.text = item.statement
-            item.answerOptions.forEachIndexed { i, label ->
-                val radioButton = itemBinding.rgStatementOptions.getChildAt(i) as RadioButton
-                radioButton.text = label
-                radioButton.tag = i
-            }
+            itemBinding.question = item
 
             itemBinding.rgStatementOptions.setOnCheckedChangeListener { radioGroup, checkedRadioButtonId ->
                 val radioButton = radioGroup.findViewById<RadioButton>(checkedRadioButtonId)
-                item.userChoiceIndex = radioButton.tag as Int
+                item.userChoiceIndex = radioButton.tag.toString().toInt()
             }
+
+            itemBinding.executePendingBindings()
         }
     }
 }
